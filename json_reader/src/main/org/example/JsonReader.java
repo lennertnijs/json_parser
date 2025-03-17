@@ -14,6 +14,7 @@ import static org.example.JsonTokenType.*;
 
 public final class JsonReader
 {
+    private int batchSize = -1;
     public JsonReader()
     {
     }
@@ -27,7 +28,7 @@ public final class JsonReader
         List<JsonToken> tokens = new ArrayList<>();
         tokens.add(DefaultToken.START_FILE_TOKEN);
         CharsetDecoder decoder = StandardCharsets.UTF_8.newDecoder();
-        int batchSize = chooseBatchSize(channel.size());
+        int batchSize = (this.batchSize == -1) ? chooseBatchSize(channel.size()) : this.batchSize;
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(batchSize);
         CharBuffer charBuffer = CharBuffer.allocate(batchSize);
         while(channel.read(byteBuffer) != -1){
@@ -64,10 +65,6 @@ public final class JsonReader
             if(Character.isWhitespace(c)){
                 continue;
             }
-//            if(tokens.size() == 1299792){
-//                String s = new String(charBuffer.array(), charBuffer.position() - 20, 100);
-//                int x = 0;
-//            }
             switch (c) {
                 case '{' -> tokens.add(DefaultToken.START_OBJECT_TOKEN);
                 case '}' -> tokens.add(DefaultToken.END_OBJECT_TOKEN);
@@ -153,6 +150,14 @@ public final class JsonReader
                 JsonTokenType.BATCH_SPLIT,
                 new String(charBuffer.array(), start, charBuffer.position() - start)
         );
+    }
+
+    public void setBatchSize(int size)
+    {
+        if(size <= 0){
+            throw new IllegalArgumentException("Batch size cannot be negative.");
+        }
+        this.batchSize = size;
     }
 
     public Map<String, Object> parse(List<JsonToken> tokens)
