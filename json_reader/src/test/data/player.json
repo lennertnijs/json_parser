@@ -1,0 +1,10 @@
+{
+  "position": {
+    "x": 200,
+    "y": 300
+  },
+  "map": "outside",
+  "inventory": {
+    "size": 9
+  }
+}

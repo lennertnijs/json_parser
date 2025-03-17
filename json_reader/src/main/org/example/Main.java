@@ -3,6 +3,7 @@ package org.example;
 import java.io.IOException;
 import java.util.Map;
 
+// https://datatracker.ietf.org/doc/html/rfc8259#section-1
 public class Main {
     public static void main(String[] args) {
         JsonReader jsonReader = new JsonReader();
