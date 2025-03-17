@@ -1,0 +1,26 @@
+{
+  "position": {
+    "x": 200,
+    "y": 200
+  },
+  "map": "outside",
+  "direction": "RIGHT",
+  "name": "player",
+  "inventory": {
+    "size": 9,
+    "items": [
+      { "name": "sword", "type": "weapon", "damage": 15 },
+      { "name": "potion", "type": "consumable", "healing": 25 },
+      { "name": "shield", "type": "armor", "defense": 10 }
+    ]
+  },
+  "quests": [
+    { "id": 1, "name": "Find the key", "completed": false },
+    { "id": 2, "name": "Defeat the dragon", "completed": false }
+  ],
+  "visited_maps": ["outside", "cave", "castle"],
+  "party_members": [
+    { "name": "ally1", "role": "warrior", "level": 5 },
+    { "name": "ally2", "role": "mage", "level": 4 }
+  ]
+}
