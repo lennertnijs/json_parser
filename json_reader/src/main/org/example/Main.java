@@ -9,7 +9,7 @@ public class Main {
         JsonReader jsonReader = new JsonReader();
         try{
             System.out.println(System.getProperty("user.dir"));
-            test(jsonReader, "getTokens with charbuffer directly ");
+            test(jsonReader, "getTokens with char buffer directly ");
         }catch(IOException e){
             System.out.println("failed");
         }
